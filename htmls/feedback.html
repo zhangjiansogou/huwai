@@ -1,0 +1,21 @@
+{% extends google.html %}
+
+{% block static %}
+	<link rel="stylesheet" href="{{ static_url('css/feedback.css') }}">
+	{% block static-added %}{% end %}
+{% end %}
+{% block leftnav %}{% end %}
+{% block center_col %}
+	<div>
+		<form action="/feedback" method="post">
+			<textarea rows="3" cols="60" name="content"></textarea>
+			<input type="submit"/>
+		</form>
+	</div>
+
+	<ul id="feedback">
+		{% for f in fb_list %}
+			<li><strong>{{ f['nick'] }}:</strong><p>{{ f['content'] }}</p><span style="display:none;"><a>X</a></span></li><hr/>
+		{% end %}
+	</ul>
+{% end %}
